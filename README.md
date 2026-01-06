@@ -3,8 +3,7 @@
 A world-class, responsive news portal frontend built with React, Tailwind CSS, and Lucide icons. Inspired by the clean, information-dense layouts of Prothom Alo and the BBC. Live site: [Nova News](https://kporus.github.io/nova-news-portal-v2/)
 
 ## 🚀 Project Setup
-
-This project is designed as a modern ES6 module application that runs directly in the browser using `esm.sh` for dependency management. No heavy build tools like Webpack or Vite are strictly required for local previewing, though it follows standard React patterns. This project is built with **Vite + React + TypeScript** and can be run with either **pnpm** or **npm**.
+This project is built with **Vite + React + TypeScript** and can be run with either **pnpm** or **npm**. Content is simulated using `MOCK_ARTICLES` dummy data. The `ArticleDetails` page dynamically retrieves articles by ID from the central context.
 
 ### Prerequisites
 
@@ -30,7 +29,7 @@ This project is designed as a modern ES6 module application that runs directly i
    pnpm dev
    ```
 
-   Open the URL Vite prints (usually `http://localhost:5173`).[3][1]
+   Open the URL Vite prints (usually `http://localhost:3000`).
 
 3. **Production build**
    ```bash
@@ -90,20 +89,19 @@ To achieve a "News Portal" feel, we utilized a dual-font strategy:
 
 The `NewsCard` component accepts a `variant` prop (`vertical` | `horizontal` | `compact`).
 
-- **Reasoning**: This drastically reduces code duplication. The same logic for date formatting and category display is shared, while the layout adapts to the specific visual requirements of the "Latest News" list vs. the "Trending" sidebar.
+- **Reasoning**: This drastically reduces code duplication. The same logic applies to date formatting and category display, while the layout adapts to the specific visual requirements of the "Latest News" list versus the "Trending" sidebar.
 
 ### 3. Responsive Layout Strategy
 
 The layout uses a **Fluid Grid System**:
 
 - **Mobile**: A single-column feed focusing on readability.
-- **Tablet**: Introduces horizontal cards to better utilize screen width.
+- **Tablet**: Introduces horizontal cards to utilize screen width better.
 - **Desktop**: A sophisticated 12-column grid featuring a main news stream (8 columns) and a "Trending/Newsletter" sidebar (4 columns), mimicking high-end news portals.
 
 ### 4. Performance & UX
 
-- **Skeleton Loaders**: Included custom `SkeletonHero`, `SkeletonArticleDetrailCard` and `SkeletonCard` components to prevent layout shift and improve perceived performance during "data fetching."
-<!-- - **Image Handling**: Uses `aspect-video` and `aspect-[4/3]` utilities to maintain consistent image ratios across different screen sizes. -->
+- **Skeleton Loaders**: Included custom `SkeletonHero`, `SkeletonArticleDetrailCard`, and `SkeletonCard` components to prevent layout shift and improve perceived performance during "data fetching."
 - **Search Integration**: A real-time filtering system that updates the news feed as the user types, providing instant feedback.
 
 ## ✨ Features at a Glance
@@ -112,3 +110,4 @@ The layout uses a **Fluid Grid System**:
 - **Persistent Interactions**: Article-specific comment sections that persist during the session.
 - **Journalistic UX**: Reading time estimates, author credits, and rich-text content rendering.
 - **Responsive Grid**: Adapts seamlessly from 4-column desktop layouts to single-column mobile story feeds.
+
