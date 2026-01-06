@@ -1,6 +1,6 @@
 # Nova News Portal
 
-A world-class, responsive news portal frontend built with React, Tailwind CSS, and Lucide icons. Inspired by the clean, information-dense layouts of Prothom Alo and the BBC.
+A world-class, responsive news portal frontend built with React, Tailwind CSS, and Lucide icons. Inspired by the clean, information-dense layouts of Prothom Alo and the BBC. Live site: [Nova News](https://kporus.github.io/nova-news-portal-v2/)
 
 ## 🚀 Project Setup
 
@@ -9,7 +9,7 @@ This project is designed as a modern ES6 module application that runs directly i
 ### Prerequisites
 
 - Node.js installed
-- Optionally `pnpm` installed globally:
+- Optionally, `pnpm` installed globally:
   ```bash
   npm install -g pnpm
   ```
