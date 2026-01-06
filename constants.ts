@@ -13,7 +13,10 @@ export const MOCK_ARTICLES: Article[] = [
     publishedAt: '2024-05-20T14:30:00Z',
     imageUrl: 'https://picsum.photos/id/1/800/600',
     isFeatured: true,
-    readTime: 5
+    readTime: 5,
+    comments: [
+      { id: 'c1', user: 'TechEnthusiast', text: 'Incredible achievement for SpaceX!', timestamp: '2 hours ago' }
+    ]
   },
   {
     id: '2',
@@ -25,7 +28,8 @@ export const MOCK_ARTICLES: Article[] = [
     publishedAt: '2024-05-19T09:00:00Z',
     imageUrl: 'https://picsum.photos/id/24/800/600',
     isTrending: true,
-    readTime: 4
+    readTime: 4,
+    comments: []
   },
   {
     id: '3',
@@ -36,7 +40,8 @@ export const MOCK_ARTICLES: Article[] = [
     author: 'Rahul Dravid',
     publishedAt: '2024-05-18T16:45:00Z',
     imageUrl: 'https://picsum.photos/id/99/800/600',
-    readTime: 3
+    readTime: 3,
+    comments: []
   },
   {
     id: '4',
@@ -48,7 +53,8 @@ export const MOCK_ARTICLES: Article[] = [
     publishedAt: '2024-05-20T10:15:00Z',
     imageUrl: 'https://picsum.photos/id/59/800/600',
     isTrending: true,
-    readTime: 6
+    readTime: 6,
+    comments: []
   },
   {
     id: '5',
@@ -59,7 +65,8 @@ export const MOCK_ARTICLES: Article[] = [
     author: 'Mark Benson',
     publishedAt: '2024-05-21T08:00:00Z',
     imageUrl: 'https://picsum.photos/id/60/800/600',
-    readTime: 4
+    readTime: 4,
+    comments: []
   },
   {
     id: '6',
@@ -70,7 +77,8 @@ export const MOCK_ARTICLES: Article[] = [
     author: 'Elena Gomez',
     publishedAt: '2024-05-19T18:30:00Z',
     imageUrl: 'https://picsum.photos/id/129/800/600',
-    readTime: 2
+    readTime: 2,
+    comments: []
   },
   {
     id: '7',
@@ -81,7 +89,8 @@ export const MOCK_ARTICLES: Article[] = [
     author: 'Robert Sterling',
     publishedAt: '2024-05-20T15:00:00Z',
     imageUrl: 'https://picsum.photos/id/160/800/600',
-    readTime: 3
+    readTime: 3,
+    comments: []
   },
   {
     id: '8',
@@ -93,6 +102,7 @@ export const MOCK_ARTICLES: Article[] = [
     publishedAt: '2024-05-21T11:20:00Z',
     imageUrl: 'https://picsum.photos/id/177/800/600',
     isTrending: true,
-    readTime: 4
+    readTime: 4,
+    comments: []
   }
 ];

@@ -2,32 +2,39 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useNews } from "../context/NewsContext";
 import {
-  Clock,
   User,
   Share2,
   Facebook,
   Twitter,
   Bookmark,
   ArrowLeft,
+
 } from "lucide-react";
 import { SkeletonArticleDetrailCard } from "@/components/News/SkeletonLoader";
 import NotFound from "./NotFound";
+import NewsCard from "@/components/News/NewsCard";
+import CommentSection from "@/components/News/CommentSection";
+import { Comment } from "@/types";
 
 const ArticleDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { getArticleById, state } = useNews();
+  const { getArticleById, state, dispatch } = useNews();
   const [article, setArticle] = useState(getArticleById(id || ""));
   const [loading, setLoading] = useState(true);
+  const [newComment, setNewComment] = useState("");
 
   useEffect(() => {
     setLoading(true);
     window.scrollTo(0, 0);
-    setTimeout(() => {
+
+    const timer = setTimeout(() => {
       const found = getArticleById(id || "");
       setArticle(found);
       setLoading(false);
     }, 400);
-  }, [id, state.articles]);
+
+    return () => clearTimeout(timer);
+  }, [id, state.articles, getArticleById]);
 
   if (loading) {
     return <SkeletonArticleDetrailCard />;
@@ -36,7 +43,28 @@ const ArticleDetails: React.FC = () => {
   if (!article) {
     return <NotFound />;
   }
+  const handleAddComment = () => {
+    if (!newComment.trim() || !article) return;
 
+    const comment = {
+      id: Date.now().toString(),
+      user: "Guest User", // Mocked user
+      text: newComment,
+      timestamp: "Just now",
+    };
+
+    dispatch({
+      type: "ADD_COMMENT",
+      payload: { articleId: article.id, comment },
+    });
+
+    setNewComment("");
+  };
+  const relatedArticles = state.articles
+    .filter((a) => a.category === article.category && a.id !== article.id)
+    .slice(0, 3);
+  console.log(article);
+  const commentsCount = article.comments?.length || 0;
   return (
     <div id="article-page--ts" className="bg-white min-h-screen pb-12">
       {/* Breadcrumb / Back */}
@@ -115,7 +143,10 @@ const ArticleDetails: React.FC = () => {
         </header>
 
         {/* Hero Image */}
-        <div id="article-hero--ts" className="mb-10 rounded-xl overflow-hidden shadow-sm">
+        <div
+          id="article-hero--ts"
+          className="mb-10 rounded-xl overflow-hidden shadow-sm"
+        >
           <img
             src={article.imageUrl}
             alt={article.title}
@@ -133,6 +164,30 @@ const ArticleDetails: React.FC = () => {
         >
           <div dangerouslySetInnerHTML={{ __html: article.content }} />
         </div>
+
+        {/* Related Articles Section */}
+        {relatedArticles.length > 0 && (
+          <section className="mt-12 pt-12 border-t border-gray-100">
+            <h3 className="text-2xl font-bold font-serif text-slate-900 mb-8">
+              Related Articles
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {relatedArticles.map((rel) => (
+                <NewsCard key={rel.id} article={rel} variant="vertical" />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Comments Section */}
+
+        <CommentSection
+          comments={article.comments as Comment[]}
+          commentsCount={commentsCount}
+          newComment={newComment}
+          setNewComment={setNewComment}
+          handleAddComment={handleAddComment}
+        />
 
         {/* Tags / Footer of Article */}
         <div
