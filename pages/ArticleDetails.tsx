@@ -167,13 +167,13 @@ const ArticleDetails: React.FC = () => {
 
         {/* Related Articles Section */}
         {relatedArticles.length > 0 && (
-          <section className="mt-12 pt-12 border-t border-gray-100">
+          <section id="related-article--ts" className="mt-12 pt-12 border-t border-gray-100">
             <h3 className="text-2xl font-bold font-serif text-slate-900 mb-8">
               Related Articles
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {relatedArticles.map((rel) => (
-                <NewsCard key={rel.id} article={rel} variant="vertical" />
+                <NewsCard key={rel.id} article={rel} variant="compact" />
               ))}
             </div>
           </section>

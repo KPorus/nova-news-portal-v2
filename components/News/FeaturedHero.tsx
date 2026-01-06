@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Article } from '../../types';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Article } from "../../types";
 
 interface FeaturedHeroProps {
   article: Article;
@@ -9,19 +9,28 @@ interface FeaturedHeroProps {
 const FeaturedHero: React.FC<FeaturedHeroProps> = ({ article }) => {
   return (
     <section id="feature-hero--ts" className="mb-12">
-      <Link to={`/article/${article.id}`} className="group relative block w-full h-[450px] md:h-[550px] rounded-xl overflow-hidden">
+      <Link
+        to={`/article/${article.id}`}
+        className="group relative block w-full h-[450px] md:h-[550px] rounded-xl overflow-hidden"
+      >
         {/* Background Image */}
-        <div id="feature-bg--ts" className="absolute inset-0">
-          <img 
-            src={article.imageUrl} 
-            alt={article.title} 
+        <div
+          id="feature-bg--ts"
+          className="absolute inset-0"
+        >
+          <img
+            src={article.imageUrl}
+            alt={article.title}
             className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent" />
         </div>
 
         {/* Content Overlay */}
-        <div id="feature-content--ts" className="absolute bottom-0 left-0 w-full p-6 md:p-10 lg:p-12 md:w-2/3 lg:w-1/2">
+        <div
+          id="feature-content--ts"
+          className="absolute bottom-0 left-0 w-full p-6 md:p-10 lg:p-12 md:w-2/3 lg:w-1/2"
+        >
           <span className="inline-block bg-primary-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4">
             Featured Story
           </span>
