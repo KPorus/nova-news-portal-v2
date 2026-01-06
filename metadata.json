@@ -1,0 +1,5 @@
+{
+  "name": "Nova News Portal",
+  "description": "A modern, responsive news portal frontend with a clean UI, featuring news categories, detailed article views, and a responsive layout built with React and Tailwind CSS.",
+  "requestFramePermissions": []
+}
