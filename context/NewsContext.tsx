@@ -17,6 +17,27 @@ const initialState: NewsState = {
   currentArticle: null,
 };
 
+const filterArticles = (
+  articles: Article[],
+  category: Category | "All",
+  searchQuery: string
+): Article[] => {
+  const byCategory =
+    category === "All"
+      ? articles
+      : articles.filter((a) => a.category === category);
+
+  const bySearch = searchQuery
+    ? byCategory.filter(
+        (a) =>
+          a.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          a.summary.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : byCategory;
+
+  return bySearch;
+};
+
 const newsReducer = (state: NewsState, action: NewsAction): NewsState => {
   switch (action.type) {
     case "SET_ARTICLES":
@@ -29,44 +50,28 @@ const newsReducer = (state: NewsState, action: NewsAction): NewsState => {
       return { ...state, loading: action.payload };
     case "SET_CATEGORY": {
       const category = action.payload;
-      console.log("category:", category);
-      const filtered =
-        category === "All"
-          ? state.articles
-          : state.articles.filter((a) => a.category === category);
-      console.log("filtered data", filtered);
-      // Also apply search if exists
-      const searchFiltered = state.searchQuery
-        ? filtered.filter((a) =>
-            a.title.toLowerCase().includes(state.searchQuery.toLowerCase())
-          )
-        : filtered;
-      console.log("data:", searchFiltered);
       return {
         ...state,
         selectedCategory: category,
-        filteredArticles: searchFiltered,
+        filteredArticles: filterArticles(
+          state.articles,
+          category,
+          state.searchQuery
+        ),
       };
     }
     case "SET_SEARCH": {
       const query = action.payload;
-      const categoryFiltered =
-        state.selectedCategory === "All"
-          ? state.articles
-          : state.articles.filter((a) => a.category === state.selectedCategory);
-
-      const finalFiltered = categoryFiltered.filter(
-        (a) =>
-          a.title.toLowerCase().includes(query.toLowerCase()) ||
-          a.summary.toLowerCase().includes(query.toLowerCase())
-      );
-
-      return { ...state, searchQuery: query, filteredArticles: finalFiltered };
+      return { ...state, searchQuery: query, filteredArticles: filterArticles(
+          state.articles,
+          state.selectedCategory,
+          query
+        ), };
     }
     case "SET_CURRENT_ARTICLE":
       return { ...state, currentArticle: action.payload };
 
-    case "ADD_COMMENT": 
+    case "ADD_COMMENT":
       const { articleId, comment } = action.payload;
       const updatedArticles = state.articles.map((article) => {
         if (article.id === articleId) {
@@ -77,24 +82,14 @@ const newsReducer = (state: NewsState, action: NewsAction): NewsState => {
         }
         return article;
       });
-
-      // Recalculate filtered articles to keep them in sync
-      const category = state.selectedCategory;
-      const filtered =
-        category === "All"
-          ? updatedArticles
-          : updatedArticles.filter((a) => a.category === category);
-
-      const finalFiltered = state.searchQuery
-        ? filtered.filter((a) =>
-            a.title.toLowerCase().includes(state.searchQuery.toLowerCase())
-          )
-        : filtered;
-
       return {
         ...state,
         articles: updatedArticles,
-        filteredArticles: finalFiltered,
+        filteredArticles: filterArticles(
+          updatedArticles,
+          state.selectedCategory,
+          state.searchQuery
+        ),
       };
     default:
       return state;
