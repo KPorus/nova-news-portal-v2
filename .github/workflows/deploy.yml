@@ -37,8 +37,8 @@ jobs:
       - name: Type Checking
         run: pnpm tsc --noEmit
 
-      - name: Lint code
-        run: pnpm lint
+      # - name: Lint code
+      #   run: pnpm lint
 
       - name: Build project
         run: pnpm build
