@@ -19,7 +19,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({
   handleAddComment,
 }) => {
   return (
-    <section className="mt-16 pt-12 border-t border-gray-100 bg-gray-50 -mx-4 px-4 sm:mx-0 sm:rounded-xl sm:p-8">
+    <section id="comment-section--ts" className="mt-16 pt-12 border-t border-gray-100 bg-gray-50 -mx-4 px-4 sm:mx-0 sm:rounded-xl sm:p-8">
       <div className="flex items-center gap-2 mb-8">
         <MessageSquare className="h-6 w-6 text-primary-600" />
         <h3 className="text-2xl font-bold font-serif text-slate-900">
@@ -28,7 +28,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({
       </div>
 
       {/* New Comment Input */}
-      <div className="mb-10">
+      <div id="new-comment--ts" className="mb-10">
         <div className="bg-white rounded-lg border border-gray-200 p-4 focus-within:ring-2 focus-within:ring-primary-500 transition-all shadow-sm">
           <textarea
             className="w-full bg-transparent border border-gray-200 rounded-lg focus:border-primary-500 focus:ring-0 text-slate-800 placeholder-gray-400 resize-none h-28 px-4 py-3 pr-10"
@@ -49,7 +49,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({
       </div>
 
       {/* Comment List */}
-      <div className="space-y-8">
+      <div id="comment-content--ts" className="space-y-8">
         {comments && comments.length > 0 ? (
           comments.map((comment) => (
             <div key={comment.id} className="flex gap-4">

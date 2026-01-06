@@ -180,7 +180,6 @@ const ArticleDetails: React.FC = () => {
         )}
 
         {/* Comments Section */}
-
         <CommentSection
           comments={article.comments as Comment[]}
           commentsCount={commentsCount}
