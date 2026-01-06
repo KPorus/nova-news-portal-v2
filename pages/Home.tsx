@@ -3,14 +3,14 @@ import { useNews } from "../context/NewsContext";
 import FeaturedHero from "../components/News/FeaturedHero";
 import NewsCard from "../components/News/NewsCard";
 import { TrendingUp } from "lucide-react";
-import Loading from "@/components/loader/Loading";
+import HomeLoading from "@/components/loader/HomeLoading";
 
 const Home: React.FC = () => {
   const { state } = useNews();
   const { filteredArticles, loading } = state;
 
   if (loading) {
-    return <Loading />;
+    return <HomeLoading />;
   }
 
   // Separate featured article (first one usually, or marked flag)

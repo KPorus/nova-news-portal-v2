@@ -1,7 +1,7 @@
 import React from "react";
 import { SkeletonCard, SkeletonHero } from "../News/SkeletonLoader";
 
-const Loading = () => {
+const HomeLoading = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <SkeletonHero />
@@ -14,4 +14,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default HomeLoading;
