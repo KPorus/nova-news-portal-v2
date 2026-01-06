@@ -49,7 +49,7 @@ const Footer: React.FC = () => {
               <a href="#" className="hover:text-primary-500 transition-colors"><Linkedin className="h-5 w-5" /></a>
             </div>
             <div className="mt-6">
-              <p className="text-xs text-gray-500">&copy; 2024 Nova News. All rights reserved.</p>
+              <p className="text-xs text-gray-500">&copy; 2026 Nova News. All rights reserved.</p>
             </div>
           </div>
 
