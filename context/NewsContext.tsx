@@ -64,7 +64,6 @@ const NewsContext = createContext<{
 export const NewsProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(newsReducer, initialState);
 
-  // Simulate API fetch
   useEffect(() => {
     dispatch({ type: 'SET_LOADING', payload: true });
     setTimeout(() => {
